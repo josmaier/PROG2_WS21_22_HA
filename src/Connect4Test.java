@@ -8,6 +8,14 @@ public class Connect4Test {
         gameBoard.outputBoard();
         gameBoard.addPiece(7,"x");
         gameBoard.outputBoard();
+        gameBoard.addPiece(7,"x");
+        gameBoard.outputBoard();
+        gameBoard.addPiece(7,"x");
+        gameBoard.outputBoard();
+        gameBoard.addPiece(4,"x");
+        gameBoard.outputBoard();
+        gameBoard.addPiece(6,"x");
+        gameBoard.outputBoard();
         gameBoard.checkGamestate();
 
     }
