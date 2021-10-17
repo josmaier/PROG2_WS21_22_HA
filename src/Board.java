@@ -77,9 +77,8 @@ public class Board {
                     if (col <= 3) {
                         if (gameBoard[col][row] != null && gameBoard[col + 1][row] != null && gameBoard[col + 2][row] != null
                                 && gameBoard[col + 3][row] != null) {
-                            if (Objects.equals(gameBoard[col + 1][row].getColour(), gameBoard[col][row].getColour())
-                                    && Objects.equals(gameBoard[col + 2][row], gameBoard[col][row])
-                                    && Objects.equals(gameBoard[col + 3][row].getColour(), gameBoard[col][row].getColour())) {
+                            if (gameBoard[col + 1][row].getColour() == gameBoard[col][row].getColour() && gameBoard[col + 2][row].getColour() == gameBoard[col][row].getColour()
+                                    && gameBoard[col + 3][row].getColour() == gameBoard[col][row].getColour()) {
                                 this.gameIsRunning = false;
                                 if (Objects.equals(gameBoard[col][row].getColour(), colour1)) {
                                     System.out.println("Player 1 has won the game!");
@@ -89,11 +88,10 @@ public class Board {
                             }
                         }
                         } else if (col > 3) {
-                            if (gameBoard[col - 1][row] != null && gameBoard[col - 2][row] != null
+                            if (gameBoard[col][row] != null && gameBoard[col - 1][row] != null && gameBoard[col - 2][row] != null
                                     && gameBoard[col - 3][row] != null) {
-                                if (Objects.equals(gameBoard[col - 1][row].getColour(), gameBoard[col][row].getColour())
-                                        && Objects.equals(gameBoard[col - 2][row], gameBoard[col][row])
-                                        && Objects.equals(gameBoard[col - 3][row].getColour(), gameBoard[col][row].getColour())) {
+                                if (gameBoard[col - 1][row].getColour() == gameBoard[col][row].getColour() && gameBoard[col - 2][row].getColour() == gameBoard[col][row].getColour()
+                                        && gameBoard[col - 3][row].getColour() == gameBoard[col][row].getColour()) {
                                     this.gameIsRunning = false;
                                     if (Objects.equals(gameBoard[col][row].getColour(), colour1)) {
                                         System.out.println("Player 1 has won the game!");
@@ -116,9 +114,8 @@ public class Board {
                     if (row2 < 2) {
                         if (gameBoard[col2][row2] != null && gameBoard[col2][row2 + 1] != null
                                 && gameBoard[col2][row2 + 2] != null && gameBoard[col2][row2 + 3] != null) {
-                            if (Objects.equals(gameBoard[col2][row2 + 1].getColour(), gameBoard[col2][row2].getColour())
-                                    && Objects.equals(gameBoard[col2][row2 + 2], gameBoard[col2][row2])
-                                    && Objects.equals(gameBoard[col2][row2 + 3].getColour(), gameBoard[col2][row2].getColour())) {
+                            if (gameBoard[col2][row2 + 1].getColour() == gameBoard[col2][row2].getColour() && gameBoard[col2][row2 + 2].getColour() == gameBoard[col2][row2].getColour()
+                                    && gameBoard[col2][row2 + 3].getColour() == gameBoard[col2][row2].getColour()) {
                                 this.gameIsRunning = false;
                                 if (gameBoard[col2][row2].getColour() == colour1) {
                                     System.out.println("Player 1 has won the game!");
@@ -130,9 +127,8 @@ public class Board {
                     } else {
                         if (gameBoard[col2][row2] != null && gameBoard[col2][row2 - 1] != null
                                 && gameBoard[col2][row2 - 2] != null && gameBoard[col2][row2 - 3] != null) {
-                            if (Objects.equals(gameBoard[col2][row2 - 1].getColour(), gameBoard[col2][row2].getColour())
-                                    && Objects.equals(gameBoard[col2][row2 - 2], gameBoard[col2][row2])
-                                    && Objects.equals(gameBoard[col2][row2 - 3].getColour(), gameBoard[col2][row2].getColour())) {
+                            if (gameBoard[col2][row2 - 1].getColour() == gameBoard[col2][row2].getColour() && gameBoard[col2][row2 - 2].getColour() == gameBoard[col2][row2].getColour()
+                                    && gameBoard[col2][row2 - 3].getColour() == gameBoard[col2][row2].getColour()) {
                                 this.gameIsRunning = false;
                                 if (gameBoard[col2][row2].getColour() == colour1) {
                                     System.out.println("Player 1 has won the game!");
@@ -156,9 +152,9 @@ public class Board {
                         if (col < 4 && row3 > 2) {
                             if (gameBoard[col + 1][row3 - 1] != null && gameBoard[col + 2][row3 - 2] != null
                                     && gameBoard[col + 3][row3 - 3] != null) {
-                                if (gameBoard[col + 1][row3 - 1] == gameBoard[col][row3]
-                                        && gameBoard[col + 2][row3 - 2] == gameBoard[col][row3]
-                                        && gameBoard[col + 3][row3 - 3] == gameBoard[col][row3]) {
+                                if (gameBoard[col + 1][row3 - 1].getColour() == gameBoard[col][row3].getColour()
+                                        && gameBoard[col + 2][row3 - 2].getColour() == gameBoard[col][row3].getColour()
+                                        && gameBoard[col + 3][row3 - 3].getColour() == gameBoard[col][row3].getColour()) {
                                     if (gameBoard[col][row3].getColour() == colour1) {
                                         System.out.println("Player 1 has won the game!");
                                     } else {
@@ -169,9 +165,9 @@ public class Board {
                         } else if (col > 2 && row3 > 2) {
                             if (gameBoard[col - 1][row3 - 1] != null && gameBoard[col - 2][row3 - 2] != null
                                     && gameBoard[col - 3][row3 - 3] != null) {
-                                if (gameBoard[col - 1][row3 - 1] == gameBoard[col][row3]
-                                        && gameBoard[col - 2][row3 - 2] == gameBoard[col][row3]
-                                        && gameBoard[col - 3][row3 - 3] == gameBoard[col][row3]) {
+                                if (gameBoard[col - 1][row3 - 1].getColour() == gameBoard[col][row3].getColour()
+                                        && gameBoard[col - 2][row3 - 2].getColour() == gameBoard[col][row3].getColour()
+                                        && gameBoard[col - 3][row3 - 3].getColour() == gameBoard[col][row3].getColour()) {
                                     if (gameBoard[col][row3].getColour() == colour1) {
                                         System.out.println("Player 1 has won the game!");
                                     } else {
@@ -182,9 +178,9 @@ public class Board {
                         } else if (col < 4 && row3 < 3) {
                             if (gameBoard[col + 1][row3 + 1] != null && gameBoard[col + 2][row3 + 2] != null
                                     && gameBoard[col + 3][row3 + 3] != null) {
-                                if (gameBoard[col + 1][row3 + 1] == gameBoard[col][row3]
-                                        && gameBoard[col + 2][row3 + 2] == gameBoard[col][row3]
-                                        && gameBoard[col + 3][row3 + 3] == gameBoard[col][row3]) {
+                                if (gameBoard[col + 1][row3 + 1].getColour() == gameBoard[col][row3].getColour()
+                                        && gameBoard[col + 2][row3 + 2].getColour() == gameBoard[col][row3].getColour()
+                                        && gameBoard[col + 3][row3 + 3].getColour() == gameBoard[col][row3].getColour()) {
                                     if (gameBoard[col][row3].getColour() == colour1) {
                                         System.out.println("Player 1 has won the game!");
                                     } else {
@@ -195,9 +191,9 @@ public class Board {
                         } else if (col > 2 && row3 < 3) {
                             if (gameBoard[col - 1][row3 + 1] != null && gameBoard[col - 2][row3 + 2] != null
                                     && gameBoard[col - 3][row3 + 3] != null) {
-                                if (gameBoard[col - 1][row3 + 1] == gameBoard[col][row3]
-                                        && gameBoard[col + 2][row3 - 2] == gameBoard[col][row3]
-                                        && gameBoard[col - 3][row3 + 3] == gameBoard[col][row3]) {
+                                if (gameBoard[col - 1][row3 + 1].getColour() == gameBoard[col][row3].getColour()
+                                        && gameBoard[col + 2][row3 - 2].getColour() == gameBoard[col][row3].getColour()
+                                        && gameBoard[col - 3][row3 + 3].getColour() == gameBoard[col][row3].getColour()) {
                                     if (gameBoard[col][row3].getColour() == colour1) {
                                         System.out.println("Player 1 has won the game!");
                                     } else {
@@ -210,6 +206,10 @@ public class Board {
                 }
             }
         }
+    }
+
+    public boolean getGameIsRunning() {
+        return gameIsRunning;
     }
 }
 
