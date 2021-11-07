@@ -4,12 +4,13 @@ public class TodoListTest {
                 "Clean dishes",
                 "Exercise Java",
                 "Workout",
-                "Watch TV"
+                "Watch TV",
+
         };
 
         TodoList todo = new TodoList(entries);
         todo.done(1);
-        todo.done(3);
+        todo.done(0);
 
         System.out.println("*Complete List*");
         System.out.println(todo);
@@ -19,8 +20,8 @@ public class TodoListTest {
 
         TodoList.UndoneIterator i = todo.getIterator();
 
-        while (i.hasNext()) {
+        do {
             System.out.println(i.getNext());
-        }
+        } while (i.hasNext());
     }
 }

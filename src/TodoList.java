@@ -6,16 +6,16 @@ public class TodoList {
      */
     private static String[]  list;
     private static boolean[] done;
-    private static int       size;
+    private static int size;
 
     /**
      * Constructor fot TodoList
      * @param todos Array with ToDos
      */
     public TodoList(String[] todos) {
-        this.list = todos;
-        this.size = todos.length;
-        this.done = new boolean[size];
+        list = todos;
+        size = todos.length;
+        done = new boolean[size];
     }
 
     /**
@@ -23,7 +23,7 @@ public class TodoList {
      * @param i Index of the array
      */
     public void done(int i) {
-        this.done[i] = true;
+        done[i] = true;
     }
 
     /**
@@ -39,8 +39,7 @@ public class TodoList {
      * @return  UndoneIterator Object
      */
     public UndoneIterator getIterator(){
-        TodoList.UndoneIterator why = new TodoList.UndoneIterator();
-        return why;
+        return new UndoneIterator();
     }
 
     /**
@@ -87,7 +86,10 @@ public class TodoList {
                     }
                 }
             }
-            return (index < list.length - 1 && h);
+            if (index >= list.length){
+                h = false;
+            }
+            return (index < list.length && h);
         }
 
     }
