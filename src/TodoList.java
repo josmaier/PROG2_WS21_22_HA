@@ -49,7 +49,7 @@ public class TodoList {
     public static class UndoneIterator {
 
         private int index = 0;
-
+        private boolean h = false;
 
 
         /**
@@ -59,27 +59,35 @@ public class TodoList {
         Ich bin mir nicht sicher was in der Aufgabe mit der Exception gemeint ist, da ich sie noch nie ausgelöset habe.
         Die Funktion enthält einen catch für die Exception falls sie aus irgendeinem Grund auftreten sollte
          */
-        public void getNext() {
+        public String getNext() {
             try {
-                for (int i = 0; i < list.length; i++) {
+                for (int i = index; i < list.length; i++) {
                     if (list[i] != null) {
                         if (!done[i]) {
-                            System.out.println(list[i]);
-                            index = i;
+                            index = (i + 1);
+                            break;
                         }
                     }
                 }
             } catch (Exception NoSuchElementException) {
-                System.out.println("This is a exception, i do not think that it will ever be thrown");
+                System.out.println("This is a exception");
             }
+            return list[index - 1];
         }
 
         /**
-         * Checks if there is a next entry in the list
+         * Checks if there is a next undone entry in the list
          * @return boolean
          */
         public boolean hasNext(){
-            return (index < list.length - 1);
+            if(!h) {
+                for (int i = 0; i < list.length; i++) {
+                    if (!done[i]) {
+                        h = true;
+                    }
+                }
+            }
+            return (index < list.length - 1 && h);
         }
 
     }

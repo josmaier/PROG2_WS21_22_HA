@@ -9,6 +9,7 @@ public class TodoListTest {
 
         TodoList todo = new TodoList(entries);
         todo.done(1);
+        todo.done(3);
 
         System.out.println("*Complete List*");
         System.out.println(todo);
@@ -19,7 +20,7 @@ public class TodoListTest {
         TodoList.UndoneIterator i = todo.getIterator();
 
         while (i.hasNext()) {
-            i.getNext();
+            System.out.println(i.getNext());
         }
     }
 }
