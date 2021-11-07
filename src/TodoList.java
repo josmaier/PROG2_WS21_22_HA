@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Objects;
 
 public class TodoList {
     /**
@@ -20,7 +19,7 @@ public class TodoList {
     }
 
     /**
-     * Marks a object in the array as done
+     * Marks an object in the array as done
      * @param i Index of the array
      */
     public void done(int i) {
@@ -35,6 +34,10 @@ public class TodoList {
         return Arrays.toString(list);
     }
 
+    public getIterator(){
+       return new TodoList.UndoneIterator();
+    }
+
     /**
      * Internal Class Undone Interator
      */
@@ -42,8 +45,14 @@ public class TodoList {
 
         private int index = 0;
 
+
+
         /**
          * This function outputs the next entry of the list that is marked undone
+         */
+        /*
+        Ich bin mir nicht sicher was in der Aufgabe mit der Exception gemeint ist, da ich sie noch nie ausgelöset habe.
+        Die Funktion enthält einen catch für die Exception falls sie aus irgendeinem Grund auftreten sollte
          */
         public void getNext() {
             try {

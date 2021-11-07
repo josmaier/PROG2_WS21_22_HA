@@ -7,10 +7,10 @@ public enum Planet {
     /**
      *  Setting circumference and Mass arrays with values in order
      */
-    private final static double Circumference [] =
+    private final static double[] Circumference =
             {2440000, 6051000, 6378000, 1738000, 3397000, 71492000, 60268000, 25559000, 24764000, 1160000};
 
-    private final static double Mass [] =
+    private final static double[] Mass =
             {3.30E23, 4.87E24, 5.97E24, 7.35E22, 6.42E23, 1.90E27, 5.69E26, 8.66E25, 1.03E26, 1.31E22};
 
     /**
@@ -22,7 +22,7 @@ public enum Planet {
     }
 
     /**
-     * Getter for the circumference of a object
+     * Getter for the circumference of an object
      * @return double
      */
     public double getCircumference(){
@@ -61,7 +61,7 @@ public enum Planet {
      * @return  String
      */
     public String nextPlanet(){
-        Planet p[] = Planet.values();
+        Planet[] p = Planet.values();
         if(this.ordinal() == 9){
             return null;
         } else {

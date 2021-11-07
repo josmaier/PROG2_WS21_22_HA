@@ -16,7 +16,7 @@ public class TodoListTest {
 
         System.out.println("*Open Items*");
 
-        TodoList.UndoneIterator i = new TodoList.UndoneIterator();
+        TodoList.UndoneIterator i = todo.getIterator();
 
         while (i.hasNext()) {
             i.getNext();
