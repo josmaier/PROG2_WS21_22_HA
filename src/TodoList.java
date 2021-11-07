@@ -34,8 +34,13 @@ public class TodoList {
         return Arrays.toString(list);
     }
 
-    public getIterator(){
-       return new TodoList.UndoneIterator();
+    /**
+     * THis methord returns a new object of the subclass UndoneIterator
+     * @return  UndoneIterator Object
+     */
+    public UndoneIterator getIterator(){
+        TodoList.UndoneIterator why = new TodoList.UndoneIterator();
+        return why;
     }
 
     /**
