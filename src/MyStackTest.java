@@ -30,5 +30,9 @@ public class MyStackTest {
         System.out.println(stringStack.toString());
         stringStack.push("Hey I am not empty anymore");
         System.out.println(stringStack.toString());
+        System.out.println();
+        System.out.println(boolStack.push(false));
+        System.out.println(boolStack.toString());
+
     }
 }
