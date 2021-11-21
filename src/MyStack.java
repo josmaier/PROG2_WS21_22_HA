@@ -1,21 +1,22 @@
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class StringStack {
+public class MyStack<E> {
 
-    public String[] Stack;
+    public  E[] Stack;
     private int fix;
 
-    public StringStack(int length) {
-        this.Stack = new String[length];
+    public MyStack(int length) {
+        this.Stack = (E[]) new Object[length];
         this.fix = 0;
     }
 
-    public StringStack() {
-        this.Stack = new String[100];
+    public MyStack() {
+        this.Stack = (E[]) new Object[100];
         this.fix = 0;
     }
 
-    public boolean push(String element) {
+    public boolean push(E element) {
         if (fix != 0) {
             for (int i = 0; i < this.Stack.length; i++) {
                 if (i <= (this.Stack.length - 1))
@@ -36,8 +37,8 @@ public class StringStack {
         return false;
     }
 
-    public String pop() {
-        String mem;
+    public E pop() {
+        E mem;
         for (int i = (this.Stack.length - 1); i >= 0; i--) {
             if (this.Stack[i] != null) {
                 mem = this.Stack[i];
@@ -51,7 +52,7 @@ public class StringStack {
         return null;
     }
 
-    public String peek(){
+    public E peek() {
         for (int i = (this.Stack.length - 1); i >= 0; i--) {
             if (this.Stack[i] != null) {
                 return this.Stack[i];
@@ -60,17 +61,17 @@ public class StringStack {
         return null;
     }
 
-    public int getSize(){
+    public int getSize() {
         int size = 0;
-        for (String s : this.Stack) {
-            if (s != null) {
+        for (E e : this.Stack) {
+            if (e != null) {
                 size++;
             }
         }
         return size;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         boolean emptyness = true;
         for (int i = (this.Stack.length - 1); i >= 0; i--) {
             if (this.Stack[i] != null) {
@@ -80,15 +81,15 @@ public class StringStack {
         return emptyness;
     }
 
-    public boolean isFull(){
+    public boolean isFull() {
         boolean fullness = false;
-            if (this.Stack[this.Stack.length - 1] != null) {
-                fullness = true;
-            }
+        if (this.Stack[this.Stack.length - 1] != null) {
+            fullness = true;
+        }
         return fullness;
     }
 
-    public String toString(){
+    public String toString() {
         String mem = "The size of the stack is: " + this.Stack.length + " and it currently contains "
                 + this.getSize() + " elements." + Arrays.toString(this.Stack);
         return mem;
