@@ -1,4 +1,3 @@
-
 public class MyDoubleLinkedListEmpty<T> {
 
   /**
@@ -13,6 +12,26 @@ public class MyDoubleLinkedListEmpty<T> {
 
     public Node(T el) {
       element = el;
+    }
+
+    public void resetNode(){
+      this.element = null;
+      this.next = null;
+      this.previous = null;
+    }
+
+    public void removeNode(){
+      if(this.getHasNext())
+      this.getPrevious().setNext(this.getNext());
+      this.getNext().setPrevious(this.getPrevious());
+    }
+
+    public T getElement() {
+      return element;
+    }
+
+    public void setElement(T element) {
+      this.element = element;
     }
 
     public Node<T> getPrevious() {
@@ -37,6 +56,7 @@ public class MyDoubleLinkedListEmpty<T> {
       }
       return false;
     }
+
   }
   
   /**
@@ -108,12 +128,7 @@ public class MyDoubleLinkedListEmpty<T> {
     }
   }
 
-  /**
-   * Fuege Element an Position pos (als 1. Element = Position 0) in Liste ein
-   */
-  public void add(int pos, T element) {
-    // TODO
-    /*
+/*
     Issue
     big issue
     als erstes neue node erstellen
@@ -123,93 +138,161 @@ public class MyDoubleLinkedListEmpty<T> {
     prev von der node an pos changen auf neue node
     easy peasy sobald ich die get node at verstehe, dann sollte das gehen vielleicht unsure
      */
+  /**
+   * Fuege Element an Position pos (als 1. Element = Position 0) in Liste ein
+   */
+  public void add(int pos, T element) {
+    // TODO
+
     Node<T> node = new Node<>(element);
 
    if(size == 0){
-
+      start = node;
+   } else if (pos == size){
+     this.add(element);
+     size++;
+   }else {
+     Node<T> prev = this.getNodeAt(pos);
+     node.setPrevious(prev.getPrevious());
+     node.setNext(prev.getNext());
+     prev.setNext(node);
+     size++;
    }
 
   }
 
+/*
+    remove next value from node start
+    prev next
+    start prev null next first -> next? yes then node = next
+            first prev start next second -> now take this prev == start and reset; next? yes node = next
+            second
+                    third next? no -> reset this one and finish
+     */
   /**
    * Loesche Liste
    */
   public void clear() {
     // TODO
-    /*
-    remove next value from node start
-     */
+
+    Node<T> node = start;
+    while(node.getHasNext()){
+      node = node.next;
+      node.previous.resetNode();
+    }
+    if(!node.getHasNext()){
+      node.resetNode();
+    }
+
   }
 
+/*
+    liste durchgehen bis node.data = element
+     */
   /**
    * Gibt true zurueck, wenn Liste das Element enthält
    */
   public boolean contains(T element) {
-    return false; // TODO
-    /*
-    liste durchgehen bis node.data = element
-     */
+    // TODO
+
+    Node<T> node = start;
+    node.setElement(element);
+
+    while (node.getHasNext()){
+      if(node.getElement() == node.next.getElement()){
+        return true;
+      }
+      node = node.next;
+      node.setElement(element);
+    }
+
+    return false;
   }
 
+  /*
+    get node at pos aber returned node.data
+     */
   /**
    * Gibt Element an Position pos zurück. Die Liste bleibt unveraendert.
    */
   public T get(int pos) {
-    return null; // TODO
-    /*
-    get node at pos aber returned node.data
-     */
+    // TODO
+
+    if(size > 0 && pos < size) {
+      return this.getNodeAt(pos).getElement();
+    } else {
+      return null;
+    }
   }
 
+  /*
+    schauen ob node start ein next hat
+     */
   /**
    * Ist die Liste leer?
    */
   public boolean isEmpty() {
-    return false; // TODO
-    /*
-    schauen ob node start ein next hat
-     */
+    // TODO
+
+    return !start.getHasNext();
   }
-  
+
+  /*
+    same as  remove, muss nur duch die liste bis node.next = node n und dann wie in remove verfahren
+     */
   /**
    * Entfernt Knoten n aus Liste
    */
-  private T removeNode(Node<T> n) {
-    return null; // TODO
-    /*
-    same as  remove, muss nur duch die liste bis node.next = node n und dann wie in remove verfahren
-     */
+  private void removeNode(Node<T> n) {
+    // TODO
+    if(n.getElement() != null) {
+      n.removeNode();
+    }
   }
 
+  /*
+    First find element with node.getnodeatelement thingy, then get prev and next, then change
+    prev and next for those to be linked with each other
+     */
   /**
    * Entfernt Element element aus Liste. Falls Element in Liste gewesen: Rückgabewert true
    */  
   public boolean remove(T element) {
-    return false;   // TODO
-    /*
-    First find element with node.getnodeatelement thingy, then get prev and next, then change
-    prev and next for those to be linked with each other
-     */
+    // TODO
+    if(this.contains(element)){
+      this.getNodeWithElement(element).removeNode();
+      return true;
+    } else  {
+      return false;
+    }
   }
 
+  /*
+    tbh kein plan wirklich, wrsch wie add at pos
+     */
   /**
    * Entfernt Element an Position pos aus Liste. Gibt Referenz auf entferntes Element zurück
    */  
   public T remove(int pos) {
-    return null;   // TODO
-    /*
-    tbh kein plan wirklich, wrsch wie add at pos
-     */
+    // TODO
+
+    if(pos < size) {
+      Node<T> node = this.getNodeAt(pos);
+      this.getNodeAt(pos).removeNode();
+      return node.getElement();
+    }
+    return null;
   }
 
+  /*
+    In the end just want to count up till I hit a node that has node.next = null
+     */
   /**
    * Anzahl der Elemente in Liste
    */
   public int size() {
-    return 0;   // TODO
-    /*
-    In the end just want to count up till I hit a node that has node.next = null
-     */
+    // TODO
+    return this.size;
   }
 
 }

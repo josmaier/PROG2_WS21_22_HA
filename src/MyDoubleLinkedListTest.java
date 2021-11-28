@@ -6,7 +6,7 @@ public class MyDoubleLinkedListTest {
   }
   
   public static void main(String[] args) {
-    MyLinkedList<String> l = new MyLinkedList<String>();
+    MyDoubleLinkedListEmpty<String> l = new MyDoubleLinkedListEmpty<String>();
     assertTrue(l.size() == 0);
     assertTrue(l.isEmpty());
     String s = "Test";
