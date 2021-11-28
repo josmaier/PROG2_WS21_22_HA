@@ -12,6 +12,8 @@ public class MyDoubleLinkedListEmpty<T> {
 
     public Node(T el) {
       element = el;
+      this.setPrevious(null);
+      this.setNext(null);
     }
 
     public void resetNode(){
@@ -21,9 +23,16 @@ public class MyDoubleLinkedListEmpty<T> {
     }
 
     public void removeNode(){
-      if(this.getHasNext())
-      this.getPrevious().setNext(this.getNext());
-      this.getNext().setPrevious(this.getPrevious());
+        if (this.getPrevious() != null) {
+          if(this.getHasNext()) {
+            this.previous.setNext(this.getNext());
+          }
+        }
+        if (this.getHasNext()) {
+          if(this.getPrevious() != null){
+            this.next.setPrevious(this.getPrevious());
+          }
+        }
     }
 
     public T getElement() {
@@ -118,6 +127,7 @@ public class MyDoubleLinkedListEmpty<T> {
       start = node;
       node.setPrevious(null);
       node.setNext(null);
+      size++;
     } else {
       Node<T> prev = start;
       while(prev.getHasNext()){
@@ -125,6 +135,7 @@ public class MyDoubleLinkedListEmpty<T> {
       }
       prev.setNext(node);
       node.setPrevious(prev);
+      size++;
     }
   }
 
@@ -153,9 +164,15 @@ public class MyDoubleLinkedListEmpty<T> {
      size++;
    }else {
      Node<T> prev = this.getNodeAt(pos);
-     node.setPrevious(prev.getPrevious());
-     node.setNext(prev.getNext());
-     prev.setNext(node);
+     if(prev.getPrevious() != null) {
+       node.setPrevious(prev.getPrevious());
+       prev.setPrevious(node);
+       node.previous.setNext(node);
+     }
+     node.setNext(prev);
+
+
+
      size++;
    }
 
@@ -233,8 +250,10 @@ public class MyDoubleLinkedListEmpty<T> {
    */
   public boolean isEmpty() {
     // TODO
-
-    return !start.getHasNext();
+    if(start == null){
+      return true;
+    }
+    return false;
   }
 
   /*
@@ -247,6 +266,7 @@ public class MyDoubleLinkedListEmpty<T> {
     // TODO
     if(n.getElement() != null) {
       n.removeNode();
+      size--;
     }
   }
 
@@ -261,6 +281,7 @@ public class MyDoubleLinkedListEmpty<T> {
     // TODO
     if(this.contains(element)){
       this.getNodeWithElement(element).removeNode();
+      size--;
       return true;
     } else  {
       return false;
@@ -279,6 +300,7 @@ public class MyDoubleLinkedListEmpty<T> {
     if(pos < size) {
       Node<T> node = this.getNodeAt(pos);
       this.getNodeAt(pos).removeNode();
+      size--;
       return node.getElement();
     }
     return null;
