@@ -1,25 +1,125 @@
-public class MyDoubleLinkedListEmpty<T> {
+public class MyDoubleLinkedListEmpty {
 
   /**
    * Private Klasse für Knoten der doppelt verketteten Liste
    */
-  private static class Node<T> {
-    T element;      // Referenz auf Datenelement
-    Node<T> previous;
-    Node<T> next;
-    Boolean hasNext;
-    // TODO: Ergänzen!
+  private static class Node {
+    String firstname;// Referenz auf Datenelement
+    String surahme;
+    Adress1 adressNormal;
+    Adress2 adressBox;
+    Adress3 freeAdress;
+    String companyName;
+    String[] phoneNumber = new String[1];
 
-    public Node(T el) {
-      element = el;
+    Node previous;
+    Node next;
+    Boolean hasNext;
+
+    public Node(String fname, String sName, String cName, Adress1 adress) {
+      this.setFirstname(fname);
+      this.setSurahme(sName);
+      this.setCompanyName(cName);
+      this.setAdressNormal(adress);
+      this.setPrevious(null);
+      this.setNext(null);
+    }
+
+    public Node(String fname, String sName, String cName, Adress2 adress) {
+      this.setFirstname(fname);
+      this.setSurahme(sName);
+      this.setCompanyName(cName);
+      this.setAdressBox(adress);
+      this.setPrevious(null);
+      this.setNext(null);
+    }
+
+    public Node(String fname, String sName, String cName, Adress3 adress) {
+      this.setFirstname(fname);
+      this.setSurahme(sName);
+      this.setCompanyName(cName);
+      this.setFreeAdress(adress);
       this.setPrevious(null);
       this.setNext(null);
     }
 
     public void resetNode(){
-      this.element = null;
-      this.next = null;
-      this.previous = null;
+      this.setFirstname(null);
+      this.setSurahme(null);
+      this.setCompanyName(null);
+      this.setAdressBox(null);
+      this.setFreeAdress(null);
+      this.setAdressNormal(null);
+      this.setPrevious(null);
+      this.setNext(null);
+    }
+
+    public String getFirstname() {
+      return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+      this.firstname = firstname;
+    }
+
+    public String getSurahme() {
+      return surahme;
+    }
+
+    public void setSurahme(String surahme) {
+      this.surahme = surahme;
+    }
+
+    public Adress1 getAdressNormal() {
+      return adressNormal;
+    }
+
+    public void setAdressNormal(Adress1 adressNormal) {
+      this.adressNormal = adressNormal;
+    }
+
+    public Adress2 getAdressBox() {
+      return adressBox;
+    }
+
+    public void setAdressBox(Adress2 adressBox) {
+      this.adressBox = adressBox;
+    }
+
+    public Adress3 getFreeAdress() {
+      return freeAdress;
+    }
+
+    public void setFreeAdress(Adress3 freeAdress) {
+      this.freeAdress = freeAdress;
+    }
+
+    public String getCompanyName() {
+      return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+      this.companyName = companyName;
+    }
+
+    public void addPhoneNumber(String number){
+      if(this.phoneNumber.length == 1){
+        this.phoneNumber[0] = number;
+      } else {
+        String[] ntemp = new String[(this.phoneNumber.length + 1)];
+        ntemp = phoneNumber;
+        ntemp[ntemp.length] = number;
+        this.phoneNumber = ntemp;
+      }
+    }
+
+    public String getPhoneNumber(){
+      if(this.phoneNumber[0] != null) {
+        for (String s : this.phoneNumber) {
+          return s;
+        }
+      }
+      return null;
     }
 
     public void removeNode(){
@@ -33,29 +133,64 @@ public class MyDoubleLinkedListEmpty<T> {
             this.next.setPrevious(this.getPrevious());
           }
         }
+
+
     }
 
-    public T getElement() {
-      return element;
-    }
 
-    public void setElement(T element) {
-      this.element = element;
-    }
 
-    public Node<T> getPrevious() {
+
+    private static class Adress1{
+      String street;
+      String City;
+      String zipCode;
+      String houseNumber;
+
+      public void Adress1(String str,String cty,String zCode,String hNumber){
+        this.street = str;
+        this.City = cty;
+        this.houseNumber = hNumber;
+        this.zipCode = zCode;
+      }
+
+   }
+   private static class Adress2{
+      String boxNumber;
+      String zipCode;
+      String City;
+
+      public void Adress2(String bNumber, String zCode, String cty){
+        this.boxNumber = bNumber;
+        this.zipCode = zCode;
+        this.City = cty;
+      }
+
+   }
+   private static class Adress3{
+      String adress;
+
+      public void Adress3(String adress){
+        this.adress = adress;
+      }
+   }
+
+
+
+
+
+    public Node getPrevious() {
       return previous;
     }
 
-    public void setPrevious(Node<T> previous) {
+    public void setPrevious(Node previous) {
       this.previous = previous;
     }
 
-    public Node<T> getNext() {
+    public Node getNext() {
       return next;
     }
 
-    public void setNext(Node<T> next) {
+    public void setNext(Node next) {
       this.next = next;
     }
 
@@ -76,15 +211,15 @@ public class MyDoubleLinkedListEmpty<T> {
   /**
    * Referenz auf erstes Element (oder null) 
    */
-  private Node<T> start = null;
+  private Node start = null;
   
   /**
    * Liefert Node-Objekt an Position pos
    */
-  private Node<T> getNodeAt(int pos) {
+  private Node getNodeAt(int pos) {
     if (pos >= size) throw new IllegalArgumentException();
 
-    Node<T> n = start;
+    Node n = start;
 
     for (;pos>0; pos--) {
       n = n.next;
@@ -97,8 +232,8 @@ public class MyDoubleLinkedListEmpty<T> {
    * Liefert Node-Objekt mit Element el.
    * Falls Element el nicht in Liste: Rueckgabewert null
    */
-  private Node<T> getNodeWithElement(T el) {
-    Node<T> n = start;
+  private Node getNodeWithElement(T el) {
+    Node< n = start;
 
     do {
       if (n.element == el) return n;

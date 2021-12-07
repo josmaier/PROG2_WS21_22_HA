@@ -26,6 +26,6 @@ public class MyDoubleLinkedListTest {
     assertTrue(l.contains(s));
     assertTrue(l.size() == 3);
     assertTrue(l.remove(s) == true);
-    
+    System.out.println("I MADE IT HERE SO IT WORKS THANK GOD");
   }
 }
