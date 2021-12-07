@@ -58,49 +58,29 @@ public class MyDoubleLinkedListEmpty {
       return firstname;
     }
 
-    public void setFirstname(String firstname) {
-      this.firstname = firstname;
-    }
 
     public String getSurahme() {
       return surahme;
     }
 
-    public void setSurahme(String surahme) {
-      this.surahme = surahme;
-    }
 
     public Adress1 getAdressNormal() {
       return adressNormal;
-    }
-
-    public void setAdressNormal(Adress1 adressNormal) {
-      this.adressNormal = adressNormal;
     }
 
     public Adress2 getAdressBox() {
       return adressBox;
     }
 
-    public void setAdressBox(Adress2 adressBox) {
-      this.adressBox = adressBox;
-    }
-
     public Adress3 getFreeAdress() {
       return freeAdress;
     }
 
-    public void setFreeAdress(Adress3 freeAdress) {
-      this.freeAdress = freeAdress;
-    }
 
     public String getCompanyName() {
       return companyName;
     }
 
-    public void setCompanyName(String companyName) {
-      this.companyName = companyName;
-    }
 
     public void addPhoneNumber(String number){
       if(this.phoneNumber.length == 1){
@@ -233,7 +213,7 @@ public class MyDoubleLinkedListEmpty {
    * Falls Element el nicht in Liste: Rueckgabewert null
    */
   private Node getNodeWithElement(T el) {
-    Node< n = start;
+    Node n = start;
 
     do {
       if (n.element == el) return n;
