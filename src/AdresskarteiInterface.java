@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class AdresskarteiInterface {
 
     Scanner input = new Scanner(System.in);
+    Scanner input2 = new Scanner(System.in);
     int y = 0;
     Adresskartei adr;
     boolean isRunning = true;
@@ -12,16 +13,14 @@ public class AdresskarteiInterface {
     }
 
     public void running(){
-        try {
-            while (isRunning) {
-                mainMenu();
-            }
-        } catch (Exception e){
-            System.out.println("Bruh");
-            }
+        if (isRunning){
+            this.mainMenu();
+        }
+
     }
 
     public void mainMenu(){
+        System.out.println();
         System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Menu");
         System.out.println();
@@ -36,21 +35,24 @@ public class AdresskarteiInterface {
         System.out.println();
         } catch (InputMismatchException e) {
             System.out.println("ERROR YOU NEED TO INPUT A INTEGER");
-            y = input.nextInt();
-            y = input.nextInt();
+            y = input2.nextInt();
         }
         switch (y){
             case 1:
                 chooseAdd();
+                this.mainMenu();
                 break;
             case 2:
                 chooseOutput();
+                this.mainMenu();
                 break;
             case 3:
                 chooseSearch();
+                this.mainMenu();
                 break;
             case 4:
                 chooseLeave();
+                this.mainMenu();
                 break;
         }
 
@@ -63,9 +65,10 @@ public class AdresskarteiInterface {
         System.out.println("Please choose if you want the list outputted in a short form, or in a detailed view.");
         System.out.println("Type 1 for the short output variant");
         System.out.println("Type 2 for the detailed view");
+        int i = 1;
         if(this.adr.size() != 0) {
             try {
-                int i = input.nextInt();
+                i = input.nextInt();
                 if (i == 1) {
                     this.adr.outputListShort();
                 } else if (i == 2) {
@@ -73,7 +76,7 @@ public class AdresskarteiInterface {
                 }
             } catch (Exception e) {
                 System.out.println("Error, please put in a number");
-                int i = input.nextInt();
+                i = input2.nextInt();
                 if (i == 1) {
                     this.adr.outputListShort();
                 } else if (i == 2) {

@@ -17,7 +17,7 @@ public class Adresskartei {
         Adress2  adressBox;
         Adress3  freeAdress;
         String   companyName;
-        String[] phoneNumber = new String[500];
+        String[] phoneNumber = new String[1];
         int adressType;
 
         Node    previous;
@@ -116,14 +116,6 @@ public class Adresskartei {
         }
 
 
-        public void addPhoneNumber(String number) {
-            for (int i = 0; i < this.phoneNumber.length; i++){
-                if(this.phoneNumber[i] != null){
-                    this.phoneNumber[i] = number;
-                    break;
-                }
-            }
-        }
 
         public String getPhoneNumber() {
                 return Arrays.toString(this.phoneNumber);
@@ -177,10 +169,10 @@ public class Adresskartei {
                 this.city = cty;
                 this.houseNumber = hNumber;
                 this.zipCode = zCode;
-                this.outputHelp[0] = zCode;
-                this.outputHelp[1] = cty;
-                this.outputHelp[2] = str;
-                this.outputHelp[3] = hNumber;
+                this.outputHelp[0] = "Zip Code: " + zCode;
+                this.outputHelp[1] = "City: " + cty;
+                this.outputHelp[2] = "Street: " + str;
+                this.outputHelp[3] = "House number: " + hNumber;
             }
 
         }
@@ -195,9 +187,9 @@ public class Adresskartei {
                 this.boxNumber = bNumber;
                 this.zipCode = zCode;
                 this.city = cty;
-                this.outputHelp[0] = zCode;
-                this.outputHelp[1] = cty;
-                this.outputHelp[2] = bNumber;
+                this.outputHelp[0] = "Zip Code: " + zCode;
+                this.outputHelp[1] = "City: " + cty;
+                this.outputHelp[2] = "P.O. Number: " + bNumber;
             }
 
 
@@ -207,7 +199,7 @@ public class Adresskartei {
             String adress;
 
             public Adress3(String adress) {
-                this.adress = adress;
+                this.adress = "Adress: " + adress;
             }
 
             public String getAdress(){
@@ -304,13 +296,31 @@ public class Adresskartei {
             companyName = input.nextLine();
             Node.Adress1 adress = new Node.Adress1(street, City, zipCode, houseNumber);
             Node         node   = new Node(firstname, surahme, companyName, adress);
+            node.adressType = 1;
             System.out.println("You can now input as many phone numbers as you wish, hitting enter after every input. " +
                     "If there are no more numbers you want to enter just type ´leave´.");
             String hope = "i";
+            int    x    = 1;
             while (!hope.contains("leave")) {
                 hope = input.nextLine();
-                    node.addPhoneNumber(hope);
-
+                if (!hope.contains("leave")) {
+                    String[] temp = new String[node.phoneNumber.length + 1];
+                    if (node.phoneNumber[0] != null) {
+                        for (int i = 0; i < node.phoneNumber.length; i++) {
+                            temp[i] = node.phoneNumber[i];
+                        }
+                        if (x == node.phoneNumber.length) {
+                            temp[x] = hope;
+                            node.phoneNumber = temp;
+                            x++;
+                        }
+                    } else {
+                        node.phoneNumber[0] = hope;
+                    }
+                    System.out.println("Please input the next phone number or type leave if you want to stop inputting"
+                            + " new numbers");
+                    input.reset();
+                }
             }
             if (size == 0) {
                 start = node;
@@ -355,15 +365,30 @@ public class Adresskartei {
             companyName = input.nextLine();
             Node.Adress2 adress = new Node.Adress2(boxNumber, City, zipCode);
             Node         node   = new Node(firstname, surahme, companyName, adress);
+            node.adressType = 2;
             System.out.println("You can now input as many phone numbers as you wish, hitting enter after every input. " +
                     "If there are no more numbers you want to enter just type ´leave´.");
-            String hope = input.nextLine();
-            while (true) {
+            String hope = "i";
+            int    x    = 1;
+            while (!hope.contains("leave")) {
                 hope = input.nextLine();
                 if (!hope.contains("leave")) {
-                    node.addPhoneNumber(hope);
-                } else {
-                    break;
+                    String[] temp = new String[node.phoneNumber.length + 1];
+                    if (node.phoneNumber[0] != null) {
+                        for (int i = 0; i < node.phoneNumber.length; i++) {
+                            temp[i] = node.phoneNumber[i];
+                        }
+                        if (x == node.phoneNumber.length) {
+                            temp[x] = hope;
+                            node.phoneNumber = temp;
+                            x++;
+                        }
+                    } else {
+                        node.phoneNumber[0] = hope;
+                    }
+                    System.out.println("Please input the next phone number or type leave if you want to stop inputting"
+                            + " new numbers");
+                    input.reset();
                 }
             }
             if (size == 0) {
@@ -403,15 +428,30 @@ public class Adresskartei {
             companyName = input.nextLine();
             Node.Adress3 adress = new Node.Adress3(adr);
             Node         node   = new Node(firstname, surahme, companyName, adress);
+            node.adressType = 3;
             System.out.println("You can now input as many phone numbers as you wish, hitting enter after every input. " +
                     "If there are no more numbers you want to enter just type ´leave´.");
-            String hope = input.nextLine();
-            while (true) {
+            String hope = "i";
+            int    x    = 1;
+            while (!hope.contains("leave")) {
                 hope = input.nextLine();
                 if (!hope.contains("leave")) {
-                    node.addPhoneNumber(hope);
-                } else {
-                    break;
+                    String[] temp = new String[node.phoneNumber.length + 1];
+                    if (node.phoneNumber[0] != null) {
+                        for (int i = 0; i < node.phoneNumber.length; i++) {
+                            temp[i] = node.phoneNumber[i];
+                        }
+                        if (x == node.phoneNumber.length) {
+                            temp[x] = hope;
+                            node.phoneNumber = temp;
+                            x++;
+                        }
+                    } else {
+                        node.phoneNumber[0] = hope;
+                    }
+                    System.out.println("Please input the next phone number or type leave if you want to stop inputting"
+                            + " new numbers");
+                    input.reset();
                 }
             }
             if (size == 0) {
@@ -477,8 +517,11 @@ public class Adresskartei {
                         System.out.print(out + " ");
                     }
                     System.out.println();
-                    System.out.println(node.getFirstname() + " " + node.getSurahme());
-                    System.out.println(node.getPhoneNumber());
+                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Saved phone numbers: ");
+                    for (String s : node.phoneNumber){
+                        System.out.print(s + " ");
+                    }
                     node = node.next;
                     break;
                 case 2:
@@ -486,15 +529,19 @@ public class Adresskartei {
                         System.out.print(out + " ");
                     }
                     System.out.println();
-                    System.out.println(node.getFirstname() + " " + node.getSurahme());
-                    System.out.println(node.getPhoneNumber());
-                    node = node.next;
+                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Saved phone numbers: ");
+                    for (String s : node.phoneNumber){
+                        System.out.print(s + " ");
+                    }                  node = node.next;
                     break;
                 case 3:
                     System.out.println(node.freeAdress.getAdress());
-                    System.out.println(node.getFirstname() + " " + node.getSurahme());
-                    System.out.println(node.getPhoneNumber());
-                    node = node.next;
+                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Saved phone numbers: ");
+                    for (String s : node.phoneNumber){
+                        System.out.print(s + " ");
+                    }                   node = node.next;
                     break;
             }
         }
@@ -505,21 +552,30 @@ public class Adresskartei {
                         System.out.print(out + " ");
                     }
                     System.out.println();
-                    System.out.println(node.getFirstname() + " " + node.getSurahme());
-                    System.out.println(node.getPhoneNumber());
+                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Saved phone numbers: ");
+                    for (String s : node.phoneNumber){
+                        System.out.print(s + " ");
+                    }
                     break;
                 case 2:
                     for (String out : node.adressBox.outputHelp){
                         System.out.print(out + " ");
                     }
                     System.out.println();
-                    System.out.println(node.getFirstname() + " " + node.getSurahme());
-                    System.out.println(node.getPhoneNumber());
+                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Saved phone numbers: ");
+                    for (String s : node.phoneNumber){
+                        System.out.print(s + " ");
+                    }
                     break;
                 case 3:
                     System.out.println(node.freeAdress.getAdress());
-                    System.out.println(node.getFirstname() + " " + node.getSurahme());
-                    System.out.println(node.getPhoneNumber());
+                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Saved phone numbers: ");
+                    for (String s : node.phoneNumber){
+                        System.out.print(s + " ");
+                    }
                     break;
             }
         }
