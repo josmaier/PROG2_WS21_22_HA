@@ -314,7 +314,7 @@ public class Adresskartei {
              * @param adress String
              */
             public Adress3(String adress) {
-                this.adress = "Adress: " + adress;
+                this.adress = adress;
             }
 
             /**
@@ -689,33 +689,43 @@ public class Adresskartei {
                 case 1:
                     System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    if(node.companyName != "c"){
+                        System.out.println("Company Name:" + node.getCompanyName());
+                    }
                     for (String out : node.adressNormal.outputHelp) {
                         System.out.print(out + " ");
                     }
                     System.out.println("Saved phone numbers: ");
                     for (String s : node.phoneNumber) {
-                        System.out.print(s + " ");
+                        System.out.print(s + "  ");
                     }
                     node = node.next;
                     break;
                 case 2:
                     System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    if(node.companyName != "c"){
+                        System.out.println("Company Name:" + node.getCompanyName());
+                    }
                     for (String out : node.adressBox.outputHelp) {
                         System.out.print(out + " ");
                     }
                     System.out.println("Saved phone numbers: ");
                     for (String s : node.phoneNumber) {
-                        System.out.print(s + " ");
+                        System.out.print(s + "  ");
                     }
                     node = node.next;
                     break;
                 case 3:
+                    System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
-                    System.out.println(node.freeAdress.getAdress());
+                    if(node.companyName != "c"){
+                        System.out.println("Company Name:" + node.getCompanyName());
+                    }
+                    System.out.println("Adress: " + node.freeAdress.getAdress());
                     System.out.println("Saved phone numbers: ");
                     for (String s : node.phoneNumber) {
-                        System.out.print(s + " ");
+                        System.out.print(s + "  ");
                     }
                     node = node.next;
                     break;
@@ -727,31 +737,41 @@ public class Adresskartei {
                 case 1:
                     System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    if(node.companyName != "c"){
+                        System.out.println("Company Name:" + node.getCompanyName());
+                    }
                     for (String out : node.adressNormal.outputHelp) {
                         System.out.print(out + " ");
                     }
                     System.out.println("Saved phone numbers: ");
                     for (String s : node.phoneNumber) {
-                        System.out.print(s + " ");
+                        System.out.print(s + "  ");
                     }
                     break;
                 case 2:
                     System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    if(node.companyName != "c"){
+                        System.out.println("Company Name:" + node.getCompanyName());
+                    }
                     for (String out : node.adressBox.outputHelp) {
                         System.out.print(out + " ");
                     }
                     System.out.println("Saved phone numbers: ");
                     for (String s : node.phoneNumber) {
-                        System.out.print(s + " ");
+                        System.out.print(s + "  ");
                     }
                     break;
                 case 3:
+                    System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
-                    System.out.println(node.freeAdress.getAdress());
+                    if(node.companyName != "c"){
+                        System.out.println("Company Name:" + node.getCompanyName());
+                    }
+                    System.out.println("Adress: " + node.freeAdress.getAdress());
                     System.out.println("Saved phone numbers: ");
                     for (String s : node.phoneNumber) {
-                        System.out.print(s + " ");
+                        System.out.print(s + "  ");
                     }
                     break;
             }
@@ -923,161 +943,123 @@ public class Adresskartei {
         Node           node;
         BufferedReader reader  = null;
         BufferedReader reader2 = null;
-        int            i       = 0;
+        int x = 1;
+        int c = 0;
 
         try {
             reader = new BufferedReader(new FileReader("output.txt"));
             while ((line = reader.readLine()) != null) {
-                int      x    = 1;
                 String[] temp = new String[inputRead.length + 1];
                 if (inputRead[0] != null) {
-                    for (int c = 0; c < inputRead.length; c++) {
-                        temp[c] = inputRead[c];
-                    }
+                    System.arraycopy(inputRead, 0, temp, 0, inputRead.length);
                     if (x == inputRead.length) {
                         temp[x] = line;
                         inputRead = temp;
-                        x++;
+                        x = x + 1;
                     }
                 } else {
                     inputRead[0] = line;
                 }
-                reader.close();
             }
+            reader.close();
             } catch(FileNotFoundException e){
                 e.printStackTrace();
             } catch(IOException e){
                 e.printStackTrace();
             }
 
-
-       /* try {
-            reader = new BufferedReader(new FileReader("output.txt"));
-            reader2 = new BufferedReader(new FileReader("output.txt"));
-            while ((line2 = reader2.readLine()) != null) {
-                while (!(line = reader.readLine()).contains("NUM")) {
-                    inputRead[i] = line;
-                    if(i < 7) {
-                        i++;
+        for(int i = 0; i < inputRead.length; i++){
+            switch(inputRead[0]){
+                case "1":
+                    Node.Adress1 adress = new Node.Adress1(inputRead[6], inputRead[5], inputRead[4], inputRead[7]);
+                    node = new Node(inputRead[1], inputRead[2], inputRead[3], adress);
+                    c = 9;
+                    while(!inputRead[c].contains("STOP")){
+                        c++;
                     }
-                }
-                switch (inputRead[0]) {
-                    case "1":
-                        Node.Adress1 adress = new Node.Adress1(inputRead[6], inputRead[5], inputRead[4], inputRead[7]);
-                        node = new Node(inputRead[1], inputRead[2], inputRead[3], adress);
-                        if (size == 0) {
-                            start = node;
-                            node.setPrevious(null);
-                            node.setNext(null);
-                            size++;
-                        } else {
-                            Node prev = start;
-                            while (prev.getHasNext()) {
-                                prev = prev.next;
-                            }
-                            prev.setNext(node);
-                            node.setPrevious(prev);
-                            size++;
+                    String[] temp2 = new String[c - 9];
+                    System.arraycopy(inputRead, 9, temp2, 0, temp2.length);
+                    node.phoneNumber = temp2;
+                    if (size == 0) {
+                        start = node;
+                        node.setPrevious(null);
+                        node.setNext(null);
+                        size++;
+                    } else {
+                        Node prev = start;
+                        while (prev.getHasNext()) {
+                            prev = prev.next;
                         }
-                        while (!(line = reader.readLine()).contains("STOP")) {
-                            int      x    = 1;
-                            String[] temp = new String[node.phoneNumber.length + 1];
-                            if (node.phoneNumber[0] != null) {
-                                for (int c = 0; c < node.phoneNumber.length; c++) {
-                                    temp[c] = node.phoneNumber[c];
-                                }
-                                if (x == node.phoneNumber.length) {
-                                    temp[x] = line;
-                                    node.phoneNumber = temp;
-                                    x++;
-                                }
-                            } else {
-                                node.phoneNumber[0] = line;
-                            }
+                        prev.setNext(node);
+                        node.setPrevious(prev);
+                        size++;
+                    }
+                    c++;
+                    String[] temp3 = new String[inputRead.length - c];
+                    System.arraycopy(inputRead, c, temp3, 0, temp3.length);
+                    inputRead = temp3;
+                    break;
+                case "2":
+                    Node.Adress2 adress2 = new Node.Adress2(inputRead[6], inputRead[5], inputRead[4]);
+                    node = new Node(inputRead[1], inputRead[2], inputRead[3], adress2);
+                    c = 8;
+                    while(!inputRead[c].contains("STOP")){
+                        c++;
+                    }
+                    temp2 = new String[c - 8];
+                    System.arraycopy(inputRead, 8, temp2, 0, temp2.length);
+                    node.phoneNumber = temp2;
+                    if (size == 0) {
+                        start = node;
+                        node.setPrevious(null);
+                        node.setNext(null);
+                        size++;
+                    } else {
+                        Node prev = start;
+                        while (prev.getHasNext()) {
+                            prev = prev.next;
                         }
-                        reader.close();
-                        break;
-                    case "2":
-                        Node.Adress2 adress2 = new Node.Adress2(inputRead[5], inputRead[3], inputRead[4]);
-                        node = new Node(inputRead[0], inputRead[1], inputRead[2], adress2);
-                        if (size == 0) {
-                            start = node;
-                            node.setPrevious(null);
-                            node.setNext(null);
-                            size++;
-                        } else {
-                            Node prev = start;
-                            while (prev.getHasNext()) {
-                                prev = prev.next;
-                            }
-                            prev.setNext(node);
-                            node.setPrevious(prev);
-                            size++;
+                        prev.setNext(node);
+                        node.setPrevious(prev);
+                        size++;
+                    }
+                    c++;
+                    temp3 = new String[inputRead.length - c];
+                    System.arraycopy(inputRead, c, temp3, 0, temp3.length);
+                    inputRead = temp3;
+                    break;
+                case "3":
+                    Node.Adress3 adress3 = new Node.Adress3(inputRead[4]);
+                    node = new Node(inputRead[1], inputRead[2], inputRead[3], adress3);
+                    c = 6;
+                    while(!inputRead[c].contains("STOP")){
+                        c++;
+                    }
+                    temp2 = new String[c - 6];
+                    System.arraycopy(inputRead, 6, temp2, 0, temp2.length);
+                    node.phoneNumber = temp2;
+                    if (size == 0) {
+                        start = node;
+                        node.setPrevious(null);
+                        node.setNext(null);
+                        size++;
+                    } else {
+                        Node prev = start;
+                        while (prev.getHasNext()) {
+                            prev = prev.next;
                         }
-                        while (!(line = reader.readLine()).contains("STOP")) {
-                            int      x    = 1;
-                            String[] temp = new String[node.phoneNumber.length + 1];
-                            if (node.phoneNumber[0] != null) {
-                                for (int c = 0; c < node.phoneNumber.length; c++) {
-                                    temp[c] = node.phoneNumber[c];
-                                }
-                                if (x == node.phoneNumber.length) {
-                                    temp[x] = line;
-                                    node.phoneNumber = temp;
-                                    x++;
-                                }
-                            } else {
-                                node.phoneNumber[0] = line;
-                            }
-                        }
-                        reader.close();
-                        break;
-                    case "3":
-                        Node.Adress3 adress3 = new Node.Adress3(inputRead[3]);
-                        node = new Node(inputRead[0], inputRead[1], inputRead[2], adress3);
-                        if (size == 0) {
-                            start = node;
-                            node.setPrevious(null);
-                            node.setNext(null);
-                            size++;
-                        } else {
-                            Node prev = start;
-                            while (prev.getHasNext()) {
-                                prev = prev.next;
-                            }
-                            prev.setNext(node);
-                            node.setPrevious(prev);
-                            size++;
-                        }
-                        while (!(line = reader.readLine()).contains("STOP")) {
-                            int      x    = 1;
-                            String[] temp = new String[node.phoneNumber.length + 1];
-                            if (node.phoneNumber[0] != null) {
-                                for (int c = 0; c < node.phoneNumber.length; c++) {
-                                    temp[c] = node.phoneNumber[c];
-                                }
-                                if (x == node.phoneNumber.length) {
-                                    temp[x] = line;
-                                    node.phoneNumber = temp;
-                                    x++;
-                                }
-                            } else {
-                                node.phoneNumber[0] = line;
-                            }
-                        }
-                        reader.close();
-                        reader2.close();
-                        break;
-                }
-
-
+                        prev.setNext(node);
+                        node.setPrevious(prev);
+                        size++;
+                    }
+                    c++;
+                    temp3 = new String[inputRead.length - c];
+                    System.arraycopy(inputRead, c, temp3, 0, temp3.length);
+                    inputRead = temp3;
+                    break;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-*/
+
     }
 
         /**
