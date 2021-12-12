@@ -1,29 +1,46 @@
+import java.io.*;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Adresskartei {
 
+    /**
+     * Initializing Scanner needed for class
+     */
     Scanner input = new Scanner(System.in);
 
 
     /**
-     * Private Klasse für Knoten der doppelt verketteten Liste
+     * Protected class managing nodes in the list
      */
-    private static class Node {
-        String   firstname;// Referenz auf Datenelement
+    protected static class Node {
+        /**
+         * Variables needed for Node class
+         */
+        String   firstname;
         String   surahme;
         Adress1  adressNormal;
         Adress2  adressBox;
         Adress3  freeAdress;
         String   companyName;
         String[] phoneNumber = new String[1];
-        int adressType;
+        int      adressType;
 
-        Node    previous;
-        Node    next;
-        Boolean hasNext;
+        /**
+         * Variables needed to determine node positon in the double linked list
+         */
+        Node previous;
+        Node next;
 
+        /**
+         * Constructor one for a new Node, the constructors differ in the adresstype that they take in
+         *
+         * @param fname  String
+         * @param sName  String
+         * @param cName  String
+         * @param adress Adress1
+         */
         public Node(String fname, String sName, String cName, Adress1 adress) {
             this.firstname = fname;
             this.surahme = sName;
@@ -34,6 +51,14 @@ public class Adresskartei {
             this.adressType = 1;
         }
 
+        /**
+         * Constructor for adresses of type 2
+         *
+         * @param fname  String
+         * @param sName  String
+         * @param cName  String
+         * @param adress Adress2
+         */
         public Node(String fname, String sName, String cName, Adress2 adress) {
             this.firstname = fname;
             this.surahme = sName;
@@ -44,6 +69,14 @@ public class Adresskartei {
             this.adressType = 2;
         }
 
+        /**
+         * Constructor for adresses of type 3
+         *
+         * @param fname  String
+         * @param sName  String
+         * @param cName  String
+         * @param adress Adress3
+         */
         public Node(String fname, String sName, String cName, Adress3 adress) {
             this.firstname = fname;
             this.surahme = sName;
@@ -54,6 +87,9 @@ public class Adresskartei {
             this.adressType = 3;
         }
 
+        /**
+         * Leftover Funtion for resetting a node from the original double linked list class
+         */
         public void resetNode() {
             this.firstname = null;
             this.surahme = null;
@@ -65,62 +101,49 @@ public class Adresskartei {
             this.setNext(null);
         }
 
+        /**
+         * Getters for the first name
+         *
+         * @return String
+         */
         public String getFirstname() {
             return firstname;
         }
-
-        public void setFirstname(String firstname) {
-            this.firstname = firstname;
-        }
-
-        public void setSurahme(String surahme) {
-            this.surahme = surahme;
-        }
-
-        public void setAdressNormal(Adress1 adressNormal) {
-            this.adressNormal = adressNormal;
-        }
-
-        public void setAdressBox(Adress2 adressBox) {
-            this.adressBox = adressBox;
-        }
-
-        public void setFreeAdress(Adress3 freeAdress) {
-            this.freeAdress = freeAdress;
-        }
-
-        public void setCompanyName(String companyName) {
-            this.companyName = companyName;
-        }
-
-        public String getSurahme() {
-            return surahme;
-        }
-
-
-        public Adress1 getAdressNormal() {
-            return adressNormal;
-        }
-
-        public Adress2 getAdressBox() {
-            return adressBox;
-        }
-
-        public Adress3 getFreeAdress() {
-            return freeAdress;
-        }
-
 
         public String getCompanyName() {
             return companyName;
         }
 
+        /**
+         * Getter for the surname
+         *
+         * @return String
+         */
+        public String getSurahme() {
+            return surahme;
+        }
+
+        /**
+         * Setter for the surname
+         *
+         * @param surahme String
+         */
+        public void setSurahme(String surahme) {
+            this.surahme = surahme;
+        }
 
 
         public String getPhoneNumber() {
-                return Arrays.toString(this.phoneNumber);
+            return Arrays.toString(this.phoneNumber);
         }
 
+        public int getAdressType() {
+            return adressType;
+        }
+
+        /**
+         * Leftover function for removing a node from the list
+         */
         public void removeNode() {
             if (this.getPrevious() != null) {
                 if (this.getHasNext()) {
@@ -136,34 +159,90 @@ public class Adresskartei {
 
         }
 
+        /**
+         * Getter for the previous node
+         *
+         * @return Node
+         */
         public Node getPrevious() {
             return previous;
         }
 
+        /**
+         * Setter for previous node
+         *
+         * @param previous Node
+         */
         public void setPrevious(Node previous) {
             this.previous = previous;
         }
 
+        /**
+         * Getter for the next node
+         *
+         * @return Node
+         */
         public Node getNext() {
             return next;
         }
 
+        /**
+         * Setter for next node
+         *
+         * @param next Node
+         */
         public void setNext(Node next) {
             this.next = next;
         }
 
+        /**
+         * Funktion to determine if a node is has a next node or is the end of the list
+         *
+         * @return boolean
+         */
         public Boolean getHasNext() {
             return this.next != null;
         }
 
 
-        private static class Adress1 {
-            String street;
-            String city;
-            String zipCode;
-            String houseNumber;
+        /**
+         * Protected class for the first adress type
+         */
+        protected static class Adress1 {
+            /**
+             * Variables needed for Adresses of type 1, including street name, city name, zip code and a house number
+             */
+            String   street;
+            String   city;
+            String   zipCode;
+            String   houseNumber;
             String[] outputHelp = new String[4];
 
+            public String getStreet() {
+                return street;
+            }
+
+            public String getCity() {
+                return city;
+            }
+
+            public String getZipCode() {
+                return zipCode;
+            }
+
+            public String getHouseNumber() {
+                return houseNumber;
+            }
+
+
+            /**
+             * Constructor for a Adress of type 1
+             *
+             * @param str     String
+             * @param cty     String
+             * @param zCode   String
+             * @param hNumber String
+             */
             public Adress1(String str, String cty, String zCode, String hNumber) {
                 this.street = str;
                 this.city = cty;
@@ -177,12 +256,37 @@ public class Adresskartei {
 
         }
 
-        private static class Adress2 {
-            String boxNumber;
-            String zipCode;
-            String city;
+        /**
+         * Protected class for the second adress type
+         */
+        protected static class Adress2 {
+            public String getBoxNumber() {
+                return boxNumber;
+            }
+
+            public String getZipCode() {
+                return zipCode;
+            }
+
+            public String getCity() {
+                return city;
+            }
+
+            /**
+             * Variables needed for adress type 2, including P.O. Box number, zip code and cirty
+             */
+            String   boxNumber;
+            String   zipCode;
+            String   city;
             String[] outputHelp = new String[3];
 
+            /**
+             * Constructor for a adress of type 2
+             *
+             * @param bNumber String
+             * @param zCode   String
+             * @param cty     String
+             */
             public Adress2(String bNumber, String zCode, String cty) {
                 this.boxNumber = bNumber;
                 this.zipCode = zCode;
@@ -195,14 +299,30 @@ public class Adresskartei {
 
         }
 
-        private static class Adress3 {
+        /**
+         * Protected class for the third adress type
+         */
+        protected static class Adress3 {
+            /**
+             * This adress type uses a free adress, meaning that the user can input any String they want
+             */
             String adress;
 
+            /**
+             * Construcor for adress type 3
+             *
+             * @param adress String
+             */
             public Adress3(String adress) {
                 this.adress = "Adress: " + adress;
             }
 
-            public String getAdress(){
+            /**
+             * Getter for the adress of type 3
+             *
+             * @return String
+             */
+            public String getAdress() {
                 return this.adress;
             }
         }
@@ -212,18 +332,19 @@ public class Adresskartei {
 
     //---------------------------------------------------------------------------------------------------------------
 
+
     /**
-     * Anzahl der Elemente in Liste
+     * Amount of entries in the list
      */
     private int size = 0;
 
     /**
-     * Referenz auf erstes Element (oder null)
+     * Refrence to the first element in the list
      */
     private Node start = null;
 
     /**
-     * Liefert Node-Objekt an Position pos
+     * Outputs a node object for a specific point in the list
      */
     private Node getNodeAt(int pos) {
         if (pos >= size) throw new IllegalArgumentException();
@@ -239,29 +360,31 @@ public class Adresskartei {
 
 
     /**
-     * Fuege Element an Ende der Liste an
+     * Method for adding a new node into the list, the user chooses the adress type they want to use in the console,
+     * depending on adress type the methord calls for one of three adding methords. Has a catch block if the user tries
+     * to input anything that isn't a integer
      */
     public void add() {
 
-        int i = 0;
+        int i;
 
         System.out.println("Please input which adress type you would like to use, 0 for a normal adress, 1 for a " +
                 "P.O. Box and 2 to use a international Adress");
 
         try {
-           i = input.nextInt();
+            i = input.nextInt();
 
-        switch (i) {
-            case 0:
-                addAdress1();
-                break;
-            case 1:
-                addAdress2();
-                break;
-            case 2:
-                addAdress3();
-                break;
-        }
+            switch (i) {
+                case 0:
+                    addAdress1();
+                    break;
+                case 1:
+                    addAdress2();
+                    break;
+                case 2:
+                    addAdress3();
+                    break;
+            }
         } catch (InputMismatchException e) {
             System.out.println("ERROR YOU NEED TO INPUT A INTEGER");
         }
@@ -269,7 +392,13 @@ public class Adresskartei {
     }
 
 
+    /**
+     * Adding function for the first adress type
+     */
     public void addAdress1() {
+        /*
+         * Temporary variables used to pass inputs to the constructor
+         */
         String firstname;
         String surahme;
         String street;
@@ -294,11 +423,18 @@ public class Adresskartei {
             houseNumber = input.nextLine();
             System.out.println("Please input their company name, if not applicable hit enter: ");
             companyName = input.nextLine();
+            if(companyName == null){
+                companyName = "c";
+            }
             Node.Adress1 adress = new Node.Adress1(street, City, zipCode, houseNumber);
             Node         node   = new Node(firstname, surahme, companyName, adress);
             node.adressType = 1;
             System.out.println("You can now input as many phone numbers as you wish, hitting enter after every input. " +
                     "If there are no more numbers you want to enter just type ´leave´.");
+            /*
+            This block adds phone numbers to the node specific array, using a temporary array and gives the user
+            the option to end typing adresses
+             */
             String hope = "i";
             int    x    = 1;
             while (!hope.contains("leave")) {
@@ -322,6 +458,10 @@ public class Adresskartei {
                     input.reset();
                 }
             }
+            /*
+            This block determines if the node added will be the first one in the list, or if it has to be added to the
+            end of the list
+             */
             if (size == 0) {
                 start = node;
                 node.setPrevious(null);
@@ -342,7 +482,13 @@ public class Adresskartei {
 
     }
 
+    /**
+     * Adding function for the second adress type
+     */
     public void addAdress2() {
+        /*
+         * Temporary variables used to pass inputs to the constructor
+         */
         String firstname;
         String surahme;
         String boxNumber;
@@ -363,11 +509,18 @@ public class Adresskartei {
             boxNumber = input.nextLine();
             System.out.println("Please input their company name, if not applicable hit enter: ");
             companyName = input.nextLine();
+            if(companyName == null){
+                companyName = "c";
+            }
             Node.Adress2 adress = new Node.Adress2(boxNumber, City, zipCode);
             Node         node   = new Node(firstname, surahme, companyName, adress);
             node.adressType = 2;
             System.out.println("You can now input as many phone numbers as you wish, hitting enter after every input. " +
                     "If there are no more numbers you want to enter just type ´leave´.");
+            /*
+            This block adds phone numbers to the node specific array, using a temporary array and gives the user
+            the option to end typing adresses
+             */
             String hope = "i";
             int    x    = 1;
             while (!hope.contains("leave")) {
@@ -391,6 +544,10 @@ public class Adresskartei {
                     input.reset();
                 }
             }
+            /*
+            This block determines if the node added will be the first one in the list, or if it has to be added to the
+            end of the list
+             */
             if (size == 0) {
                 start = node;
                 node.setPrevious(null);
@@ -410,7 +567,13 @@ public class Adresskartei {
         }
     }
 
+    /**
+     * Adding function for the third adress type
+     */
     public void addAdress3() {
+        /*
+         * Temporary variables used to pass inputs to the constructor
+         */
         String firstname;
         String surahme;
         String adr;
@@ -426,11 +589,18 @@ public class Adresskartei {
             adr = input.nextLine();
             System.out.println("Please input their company name, if not applicable hit enter: ");
             companyName = input.nextLine();
+            if(companyName == null){
+                companyName = "c";
+            }
             Node.Adress3 adress = new Node.Adress3(adr);
             Node         node   = new Node(firstname, surahme, companyName, adress);
             node.adressType = 3;
             System.out.println("You can now input as many phone numbers as you wish, hitting enter after every input. " +
                     "If there are no more numbers you want to enter just type ´leave´.");
+            /*
+            This block adds phone numbers to the node specific array, using a temporary array and gives the user
+            the option to end typing adresses
+             */
             String hope = "i";
             int    x    = 1;
             while (!hope.contains("leave")) {
@@ -454,6 +624,10 @@ public class Adresskartei {
                     input.reset();
                 }
             }
+            /*
+            This block determines if the node added will be the first one in the list, or if it has to be added to the
+            end of the list
+             */
             if (size == 0) {
                 start = node;
                 node.setPrevious(null);
@@ -474,7 +648,7 @@ public class Adresskartei {
     }
 
     /**
-     * Loesche Liste
+     * Leftover method from original double linked list class
      */
     public void clear() {
 
@@ -489,91 +663,94 @@ public class Adresskartei {
 
     }
 
-    public void outputListShort(){
+    /**
+     * Function outpurs the list in a short variant, only giving the first and lastname of a entry
+     */
+    public void outputListShort() {
         Node node = start;
-        while (node.getHasNext()){
+        while (node.getHasNext()) {
             System.out.println(node.getFirstname() + " " + node.getSurahme());
             node = node.next;
             System.out.println();
         }
-        if(node.getSurahme() != null){
+        if (node.getSurahme() != null) {
             System.out.println(node.getFirstname() + " " + node.getSurahme());
         }
     }
-    
-    public void outputListResult(Node[] r){
-        for (Node node : r){
-            System.out.println(node.getFirstname() + " " + node.getSurahme());
-        }
 
-    }
-
-    public void outputListLong(){
+    /**
+     * This function outputs a more detailed list of all entries, including adresses and phone numbers
+     */
+    public void outputListLong() {
         Node node = start;
-        while (node.getHasNext()){
-            switch (node.adressType){
+        while (node.getHasNext()) {
+            System.out.println();
+            switch (node.adressType) {
                 case 1:
-                    for (String out : node.adressNormal.outputHelp){
-                        System.out.print(out + " ");
-                    }
                     System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    for (String out : node.adressNormal.outputHelp) {
+                        System.out.print(out + " ");
+                    }
                     System.out.println("Saved phone numbers: ");
-                    for (String s : node.phoneNumber){
+                    for (String s : node.phoneNumber) {
                         System.out.print(s + " ");
                     }
                     node = node.next;
                     break;
                 case 2:
-                    for (String out : node.adressBox.outputHelp){
-                        System.out.print(out + " ");
-                    }
                     System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    for (String out : node.adressBox.outputHelp) {
+                        System.out.print(out + " ");
+                    }
                     System.out.println("Saved phone numbers: ");
-                    for (String s : node.phoneNumber){
+                    for (String s : node.phoneNumber) {
                         System.out.print(s + " ");
-                    }                  node = node.next;
+                    }
+                    node = node.next;
                     break;
                 case 3:
-                    System.out.println(node.freeAdress.getAdress());
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println(node.freeAdress.getAdress());
                     System.out.println("Saved phone numbers: ");
-                    for (String s : node.phoneNumber){
+                    for (String s : node.phoneNumber) {
                         System.out.print(s + " ");
-                    }                   node = node.next;
+                    }
+                    node = node.next;
                     break;
             }
         }
-        if (node.getNext() == null){
-            switch (node.adressType){
+        if (node.getNext() == null) {
+            System.out.println();
+            switch (node.adressType) {
                 case 1:
-                    for (String out : node.adressNormal.outputHelp){
-                        System.out.print(out + " ");
-                    }
                     System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    for (String out : node.adressNormal.outputHelp) {
+                        System.out.print(out + " ");
+                    }
                     System.out.println("Saved phone numbers: ");
-                    for (String s : node.phoneNumber){
+                    for (String s : node.phoneNumber) {
                         System.out.print(s + " ");
                     }
                     break;
                 case 2:
-                    for (String out : node.adressBox.outputHelp){
-                        System.out.print(out + " ");
-                    }
                     System.out.println();
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    for (String out : node.adressBox.outputHelp) {
+                        System.out.print(out + " ");
+                    }
                     System.out.println("Saved phone numbers: ");
-                    for (String s : node.phoneNumber){
+                    for (String s : node.phoneNumber) {
                         System.out.print(s + " ");
                     }
                     break;
                 case 3:
-                    System.out.println(node.freeAdress.getAdress());
                     System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println(node.freeAdress.getAdress());
                     System.out.println("Saved phone numbers: ");
-                    for (String s : node.phoneNumber){
+                    for (String s : node.phoneNumber) {
                         System.out.print(s + " ");
                     }
                     break;
@@ -581,37 +758,343 @@ public class Adresskartei {
         }
     }
 
-
+    /**
+     * This method searches the list for entries, that have a surname that contains a search string
+     *
+     * @param sNamePart String
+     * @return Node[]
+     */
     public Node[] outputSearchResultArray(String sNamePart) {
 
+        int    i       = 0;
         Node[] results = new Node[size];
         Node   node    = start;
+        if (node.getSurahme().contains(sNamePart)) {
+            results[0] = node;
+            i++;
+        }
         node.setSurahme(sNamePart);
-        int i = 0;
         while (node.getHasNext()) {
             if (node.next.getSurahme().contains(node.getSurahme())) {
+                node = node.next;
                 results[i] = node;
                 i++;
-                node = node.next;
                 node.setSurahme(sNamePart);
+            } else {
+                node = node.next;
             }
         }
         return results;
     }
 
     /**
-     * Ist die Liste leer?
+     * This function outputs the results of the search function
+     *
+     * @param r Node[]
+     */
+    public void outputListResult(Node[] r) {
+        for (Node node : r) {
+            System.out.println(node.getFirstname() + " " + node.getSurahme());
+        }
+
+    }
+
+    public Node[] listToArray() {
+        if (size != 0) {
+            Node   node   = start;
+            int    i      = 0;
+            Node[] output = new Node[size];
+            while (node.getHasNext()) {
+                output[i] = node;
+                node = node.next;
+                i++;
+            }
+            if (node.next == null) {
+                output[i] = node;
+            }
+            return output;
+        }
+        return null;
+    }
+
+    public void exportNode(Node[] list) {
+        String       firstname;
+        String       surahme;
+        Node.Adress1 adressNorm;
+        Node.Adress2 adressBo;
+        String       freeAdres;
+        String       companyName;
+        String       street;
+        String       city;
+        String       zipCode;
+        String       houseNumber;
+        String       boNum;
+        Node         node = start;
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter("Output.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        for (int i = 0; i < list.length; i++) {
+            node = list[i];
+            if (node != null) {
+                firstname = node.getFirstname();
+                surahme = node.getSurahme();
+                companyName = node.getCompanyName();
+                switch (node.getAdressType()) {
+                    case 1:
+                        zipCode = node.adressNormal.getZipCode();
+                        street = node.adressNormal.getStreet();
+                        houseNumber = node.adressNormal.getHouseNumber();
+                        city = node.adressNormal.getCity();
+                        try {
+                            writer.write(node.adressType + "\n" + firstname + "\n" + surahme + "\n" + companyName + "\n" + zipCode + "\n" +
+                                    city + "\n" + street + "\n" + houseNumber + "\n" + "NUM" + "\n");
+                            for (int y = 0; y < node.phoneNumber.length; y++) {
+                                writer.write(node.phoneNumber[y] + "\n");
+                            }
+                            writer.write("STOP" + "\n");
+                            writer.flush();
+                            writer.flush();
+                        } catch (IOException e) {
+                            break;
+                        }
+
+                        break;
+                    case 2:
+                        boNum = node.adressBox.getBoxNumber();
+                        city = node.adressBox.getCity();
+                        zipCode = node.adressBox.getZipCode();
+                        try {
+                            writer.write(node.adressType + "\n" + firstname + "\n" + surahme + "\n" + companyName + "\n" + zipCode + "\n" +
+                                    city + "\n" + boNum + "\n" + "NUM" + "\n");
+                            for (int y = 0; y < node.phoneNumber.length; y++) {
+                                writer.write(node.phoneNumber[y] + "\n");
+                            }
+                            writer.write("STOP" + "\n");
+                            writer.flush();
+                            writer.flush();
+                        } catch (IOException e) {
+                            break;
+                        }
+                        break;
+                    case 3:
+                        freeAdres = node.freeAdress.getAdress();
+                        try {
+                            writer.write(node.adressType + "\n" + firstname + "\n" + surahme + "\n" + companyName + "\n" + freeAdres
+                                    + "\n" + "NUM" + "\n");
+                            for (int y = 0; y < node.phoneNumber.length; y++) {
+                                writer.write(node.phoneNumber[y] + "\n");
+                            }
+                            writer.write("STOP" + "\n");
+                            writer.flush();
+                        } catch (IOException e) {
+                            break;
+                        }
+                }
+            }
+        }
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void importNode() {
+        String         firstname;
+        String         surahme;
+        Node.Adress1   adressNorm;
+        Node.Adress2   adressBo;
+        String         freeAdres;
+        String         companyName;
+        String         street;
+        String         city;
+        String         zipCode;
+        String         houseNumber;
+        String         boNum;
+        String         line;
+        String         line2;
+        String[]       inputRead = new String[1];
+        Node           node;
+        BufferedReader reader  = null;
+        BufferedReader reader2 = null;
+        int            i       = 0;
+
+        try {
+            reader = new BufferedReader(new FileReader("output.txt"));
+            while ((line = reader.readLine()) != null) {
+                int      x    = 1;
+                String[] temp = new String[inputRead.length + 1];
+                if (inputRead[0] != null) {
+                    for (int c = 0; c < inputRead.length; c++) {
+                        temp[c] = inputRead[c];
+                    }
+                    if (x == inputRead.length) {
+                        temp[x] = line;
+                        inputRead = temp;
+                        x++;
+                    }
+                } else {
+                    inputRead[0] = line;
+                }
+                reader.close();
+            }
+            } catch(FileNotFoundException e){
+                e.printStackTrace();
+            } catch(IOException e){
+                e.printStackTrace();
+            }
+
+
+       /* try {
+            reader = new BufferedReader(new FileReader("output.txt"));
+            reader2 = new BufferedReader(new FileReader("output.txt"));
+            while ((line2 = reader2.readLine()) != null) {
+                while (!(line = reader.readLine()).contains("NUM")) {
+                    inputRead[i] = line;
+                    if(i < 7) {
+                        i++;
+                    }
+                }
+                switch (inputRead[0]) {
+                    case "1":
+                        Node.Adress1 adress = new Node.Adress1(inputRead[6], inputRead[5], inputRead[4], inputRead[7]);
+                        node = new Node(inputRead[1], inputRead[2], inputRead[3], adress);
+                        if (size == 0) {
+                            start = node;
+                            node.setPrevious(null);
+                            node.setNext(null);
+                            size++;
+                        } else {
+                            Node prev = start;
+                            while (prev.getHasNext()) {
+                                prev = prev.next;
+                            }
+                            prev.setNext(node);
+                            node.setPrevious(prev);
+                            size++;
+                        }
+                        while (!(line = reader.readLine()).contains("STOP")) {
+                            int      x    = 1;
+                            String[] temp = new String[node.phoneNumber.length + 1];
+                            if (node.phoneNumber[0] != null) {
+                                for (int c = 0; c < node.phoneNumber.length; c++) {
+                                    temp[c] = node.phoneNumber[c];
+                                }
+                                if (x == node.phoneNumber.length) {
+                                    temp[x] = line;
+                                    node.phoneNumber = temp;
+                                    x++;
+                                }
+                            } else {
+                                node.phoneNumber[0] = line;
+                            }
+                        }
+                        reader.close();
+                        break;
+                    case "2":
+                        Node.Adress2 adress2 = new Node.Adress2(inputRead[5], inputRead[3], inputRead[4]);
+                        node = new Node(inputRead[0], inputRead[1], inputRead[2], adress2);
+                        if (size == 0) {
+                            start = node;
+                            node.setPrevious(null);
+                            node.setNext(null);
+                            size++;
+                        } else {
+                            Node prev = start;
+                            while (prev.getHasNext()) {
+                                prev = prev.next;
+                            }
+                            prev.setNext(node);
+                            node.setPrevious(prev);
+                            size++;
+                        }
+                        while (!(line = reader.readLine()).contains("STOP")) {
+                            int      x    = 1;
+                            String[] temp = new String[node.phoneNumber.length + 1];
+                            if (node.phoneNumber[0] != null) {
+                                for (int c = 0; c < node.phoneNumber.length; c++) {
+                                    temp[c] = node.phoneNumber[c];
+                                }
+                                if (x == node.phoneNumber.length) {
+                                    temp[x] = line;
+                                    node.phoneNumber = temp;
+                                    x++;
+                                }
+                            } else {
+                                node.phoneNumber[0] = line;
+                            }
+                        }
+                        reader.close();
+                        break;
+                    case "3":
+                        Node.Adress3 adress3 = new Node.Adress3(inputRead[3]);
+                        node = new Node(inputRead[0], inputRead[1], inputRead[2], adress3);
+                        if (size == 0) {
+                            start = node;
+                            node.setPrevious(null);
+                            node.setNext(null);
+                            size++;
+                        } else {
+                            Node prev = start;
+                            while (prev.getHasNext()) {
+                                prev = prev.next;
+                            }
+                            prev.setNext(node);
+                            node.setPrevious(prev);
+                            size++;
+                        }
+                        while (!(line = reader.readLine()).contains("STOP")) {
+                            int      x    = 1;
+                            String[] temp = new String[node.phoneNumber.length + 1];
+                            if (node.phoneNumber[0] != null) {
+                                for (int c = 0; c < node.phoneNumber.length; c++) {
+                                    temp[c] = node.phoneNumber[c];
+                                }
+                                if (x == node.phoneNumber.length) {
+                                    temp[x] = line;
+                                    node.phoneNumber = temp;
+                                    x++;
+                                }
+                            } else {
+                                node.phoneNumber[0] = line;
+                            }
+                        }
+                        reader.close();
+                        reader2.close();
+                        break;
+                }
+
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+*/
+    }
+
+        /**
+     * Leftover
      */
     public boolean isEmpty() {
         return start == null;
     }
 
+
     /**
-     * Anzahl der Elemente in Liste
+     * Amount of node elements in the list
      */
     public int size() {
         return this.size;
     }
 
 }
+
 
