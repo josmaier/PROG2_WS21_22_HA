@@ -6,7 +6,6 @@ public class MyStack<E> {
      * Initializing variables for class, this includes a array of the type E and a fix variable,
      * for putting in the first object of the stack
      */
-    //HEY READ THIS U SUCKER
     public  E[] Stack;
     private int fix;
 
