@@ -106,7 +106,7 @@ public class Adresskartei {
          *
          * @return String
          */
-        public String getFirstname() {
+        public String getfirstname() {
             return firstname;
         }
 
@@ -639,12 +639,12 @@ public class Adresskartei {
     public void outputListShort() {
         Node node = start;
         while (node.getHasNext()) {
-            System.out.println(node.getFirstname() + " " + node.getSurahme());
+            System.out.println(node.getfirstname() + " " + node.getSurahme());
             node = node.next;
             System.out.println();
         }
         if (node.getSurahme() != null) {
-            System.out.println(node.getFirstname() + " " + node.getSurahme());
+            System.out.println(node.getfirstname() + " " + node.getSurahme());
         }
     }
 
@@ -658,7 +658,7 @@ public class Adresskartei {
             switch (node.adressType) {
                 case 1:
                     System.out.println();
-                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Name: " + node.getfirstname() + " " + node.getSurahme());
                     if(!Objects.equals(node.companyName, "c")){
                         System.out.println("Company Name:" + node.getCompanyName());
                     }
@@ -673,7 +673,7 @@ public class Adresskartei {
                     break;
                 case 2:
                     System.out.println();
-                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Name: " + node.getfirstname() + " " + node.getSurahme());
                     if(!Objects.equals(node.companyName, "c")){
                         System.out.println("Company Name:" + node.getCompanyName());
                     }
@@ -688,7 +688,7 @@ public class Adresskartei {
                     break;
                 case 3:
                     System.out.println();
-                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Name: " + node.getfirstname() + " " + node.getSurahme());
                     if(!Objects.equals(node.companyName, "c")){
                         System.out.println("Company Name:" + node.getCompanyName());
                     }
@@ -706,7 +706,7 @@ public class Adresskartei {
             switch (node.adressType) {
                 case 1:
                     System.out.println();
-                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Name: " + node.getfirstname() + " " + node.getSurahme());
                     if(!Objects.equals(node.companyName, "c")){
                         System.out.println("Company Name:" + node.getCompanyName());
                     }
@@ -720,7 +720,7 @@ public class Adresskartei {
                     break;
                 case 2:
                     System.out.println();
-                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Name: " + node.getfirstname() + " " + node.getSurahme());
                     if(!Objects.equals(node.companyName, "c")){
                         System.out.println("Company Name:" + node.getCompanyName());
                     }
@@ -734,7 +734,7 @@ public class Adresskartei {
                     break;
                 case 3:
                     System.out.println();
-                    System.out.println("Name: " + node.getFirstname() + " " + node.getSurahme());
+                    System.out.println("Name: " + node.getfirstname() + " " + node.getSurahme());
                     if(!Objects.equals(node.companyName, "c")){
                         System.out.println("Company Name:" + node.getCompanyName());
                     }
@@ -784,7 +784,7 @@ public class Adresskartei {
      */
     public void outputListResult(Node[] r) {
         for (Node node : r) {
-            System.out.println(node.getFirstname() + " " + node.getSurahme());
+            System.out.println(node.getfirstname() + " " + node.getSurahme());
         }
 
     }
@@ -843,7 +843,7 @@ public class Adresskartei {
         for (Node value : list) {
             node = value;
             if (node != null) {
-                firstname = node.getFirstname();
+                firstname = node.getfirstname();
                 surahme = node.getSurahme();
                 companyName = node.getCompanyName();
                 switch (node.getAdressType()) {

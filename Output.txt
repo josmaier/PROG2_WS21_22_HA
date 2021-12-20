@@ -1,0 +1,43 @@
+1
+Firstname
+Surname
+Company Name
+Zip Code
+CIty
+Streetname
+Housenumber
+NUM
+Phone Numbers
+Phone Numbers2
+Phone Numbers3
+STOP
+2
+Firstname
+Surname
+Company Name
+Zip Code
+City
+P.O. Box Number
+NUM
+Phone Numbers
+STOP
+3
+Firstname
+Surname
+Company Name
+Adress: Adress
+NUM
+Phone Numbers
+Phone Numbers2
+STOP
+2
+qwe
+qwe
+qweq
+qwe
+qwe
+qwe
+NUM
+weq
+we
+STOP
