@@ -5,6 +5,40 @@
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#a200ff"
     },
+    "editor.tokenColorCustomizations": {
+        "[Andromeda Bordered]": {
+            "textMateRules": [
+                {
+                    "scope": [
+                        "comment.block",
+                        "punctuation.definition.comment.end",
+                        "punctuation.definition.comment.begin"
+                    ],
+                    "settings": {
+                        "foreground": "#85b3f8",
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": [
+                        "comment.block.documentation",
+                        "punctuation.definition.comment.end.documentation",
+                        "punctuation.definition.comment.begin.documentation"
+                    ],
+                    "settings": {
+                        "foreground": "#00fc3f",
+                        "fontStyle": "bold"
+                    }
+                },{
+                    "scope":["comment.line"],
+                    "settings": {
+                        "foreground": "#a200ff",
+                        "fontStyle": "bold"
+                    }
+                }
+            ]
+        }
+    },
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "c:\\Users\\josch\\Downloads\\openjfx-17.0.1_windows-x64_bin-sdk\\javafx-sdk-17.0.1\\lib\\javafx.base.jar",
