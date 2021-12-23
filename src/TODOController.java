@@ -13,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 
 public class TODOController {
@@ -49,6 +48,7 @@ public class TODOController {
     @FXML
     private void handleAddNewButton(ActionEvent event) {
         String textInput = TODOTextInput.getText();
+    
 
         String[] temp = new String[this.list.length + 1];
         if (this.list[0] != null) {
@@ -84,7 +84,6 @@ public class TODOController {
         String line;
         String[] inputRead = new String[1];
         int x = 1;
-        int c;
         BufferedReader reader;
         try {
             reader = new BufferedReader((new FileReader("output.txt")));
@@ -100,6 +99,7 @@ public class TODOController {
                 } else {
                     inputRead[0] = line;
                 }
+
             }
             reader.close();
             for(String inputText : inputRead){
@@ -113,7 +113,10 @@ public class TODOController {
     
                 }
 
-                this.list = inputRead;
+                String[] temp2 = new String[this.list.length + inputRead.length];
+                System.arraycopy(this.list, 0, temp2, 0, this.list.length);
+                System.arraycopy(inputRead, 0, temp2, this.list.length, inputRead.length);
+                this.list = temp2;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -147,8 +150,6 @@ public class TODOController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Stage stage = new Stage();
 
         succExport.setOpacity(1);
         okButtonTop.setOpacity(1);        

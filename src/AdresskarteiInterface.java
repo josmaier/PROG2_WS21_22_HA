@@ -115,6 +115,7 @@ public class AdresskarteiInterface {
         } catch (NullPointerException e){
             System.out.println("the search text can not be null");
         }
+        inputTemp.close();
     }
 
     public void chooseExport(){
@@ -131,6 +132,9 @@ public class AdresskarteiInterface {
         h = input.nextLine();
         if(h.contains("yes")){
             isRunning = false;
+            this.input.close();
+            this.input2.close();
+            
         }
     }
 }

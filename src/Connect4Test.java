@@ -29,5 +29,6 @@ public class Connect4Test {
                 y = 0;
             }
         }
+        input.close();
     }
 }
