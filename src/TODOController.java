@@ -143,8 +143,10 @@ public class TODOController {
         try {
             writer = new BufferedWriter(new FileWriter("output.txt"));
             for(String exportString : this.list){
+                if(exportString != null){
                 writer.write(exportString + "\n");
                 writer.flush();
+                }
             }
             writer.close();
         } catch (IOException e) {
