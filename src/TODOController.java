@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 
 public class TODOController {
 
-    //ANCHOR
+    //ANCHOR start
     /**
      * Variables for class
      */
@@ -71,10 +71,11 @@ public class TODOController {
 
     }
 
-    //ANCHOR
+    //ANCHOR import export
     /**
      * Reads a textfile and automatically adds entries to the String[] as the add new button does and adds them to the 
-     * VBox, then presents the User with a prompt for successfull export and a button to close said prompt
+     * VBox, then presents the User with a prompt for successfull export and a button to close said prompt.
+     * Also updates the x variable used to place new elements into the list array 
      * 
      * @param event     Button Press
      */
@@ -117,6 +118,7 @@ public class TODOController {
                 System.arraycopy(this.list, 0, temp2, 0, this.list.length);
                 System.arraycopy(inputRead, 0, temp2, this.list.length, inputRead.length);
                 this.list = temp2;
+                this.x = this.list.length;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
