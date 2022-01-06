@@ -1,7 +1,7 @@
 {
 "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
-    "editor.rulers": [120],
+    "editor.rulers": [100],
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#a200ff"
     },

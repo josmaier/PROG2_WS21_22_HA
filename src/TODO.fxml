@@ -36,7 +36,7 @@
                   <Font size="30.0" />
                </font>
             </Text>
-            <Text fx:id="succExport" layoutX="298.0" layoutY="38.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Succesfully Exported List">
+            <Text fx:id="succExport" layoutX="296.0" layoutY="39.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Succesfully Exported List">
                <font>
                   <Font size="30.0" />
                </font>
