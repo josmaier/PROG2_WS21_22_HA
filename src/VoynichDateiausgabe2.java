@@ -53,7 +53,7 @@ public class VoynichDateiausgabe2 {
      */
     // ANCHOR outputProbability
     public static void ausgabeHaeufigkeiten(char[] zeichen) {
-        int[] anzahlZeichen = new int[65536];
+        int[] anzahlZeichen = new int[255];
         int alleZeichen = 0;
 
         System.out.println();
@@ -80,8 +80,7 @@ public class VoynichDateiausgabe2 {
         }
 
         System.out.println("\n" + "The character that appeared the most is: \n");
-        char mostOften = (char) relativeHaeufigkeit[1];
-        System.out.println(mostOften + ": " + relativeHaeufigkeit[0]);
+        System.out.println((char) relativeHaeufigkeit[1] + ": " + relativeHaeufigkeit[0]);
 
     }
 
@@ -94,18 +93,19 @@ public class VoynichDateiausgabe2 {
      * @param number        int total number of characters in the text
      * @return double[]
      */
+    //ANCHOR calculate probability
     public static double[] berechneRelativeHaeufigkeit(int[] absoluteHaeuf, int number) {
-        double[] relHaeuf = new double[65536];
+        double[] relHaeuf = new double[255];
 
         for (char c = 'a'; c <= 'z'; c++) {
             Double banana = (double) absoluteHaeuf[c] / (double) number;
             relHaeuf[c] = banana * 100;
         }
 
-        for (char c = 'a'; c <= 'z'; c++) {
-            if (relHaeuf[0] < absoluteHaeuf[c]) {
-                relHaeuf[0] = absoluteHaeuf[c];
-                relHaeuf[1] = c;
+        for (int i = 33; i < absoluteHaeuf.length; i++) {
+            if (relHaeuf[0] < absoluteHaeuf[i]) {
+                relHaeuf[0] = absoluteHaeuf[i];
+                relHaeuf[1] = i;
             }
         }
 
