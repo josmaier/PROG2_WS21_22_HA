@@ -6,6 +6,69 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch LineCounterRunnable",
+            "request": "launch",
+            "mainClass": "LineCounterRunnable",
+            "projectName": "PROG2_WS21_22_HA_d8561602"
+        },
+        {
+            "type": "java",
+            "name": "Launch randomFileGenerator",
+            "request": "launch",
+            "mainClass": "randomFileGenerator",
+            "projectName": "PROG2_WS21_22_HA_d8561602"
+        },
+        {
+            "type": "java",
+            "name": "Launch LineCounterSequential",
+            "request": "launch",
+            "mainClass": "LineCounterSequential",
+            "projectName": "PROG2_WS21_22_HA_d8561602"
+        },
+        {
+            "type": "java",
+            "name": "Launch pruefungEnum",
+            "request": "launch",
+            "mainClass": "pruefungEnum",
+            "projectName": "PROG2_WS21_22_HA_d8561602"
+        },
+        {
+            "type": "java",
+            "name": "Launch bra",
+            "request": "launch",
+            "mainClass": "bra",
+            "projectName": "PROG2_WS21_22_HA_d8561602"
+        },
+        {
+            "type": "java",
+            "name": "Launch sortIntArray",
+            "request": "launch",
+            "mainClass": "sortIntArray",
+            "projectName": "PROG2_WS21_22_HA_d8561602"
+        },
+        {
+            "type": "java",
+            "name": "Launch Voynich",
+            "request": "launch",
+            "mainClass": "Voynich",
+            "projectName": "PROG2_WS21_22_HA_d8561602"
+        },
+        {
+            "type": "java",
+            "name": "Launch ZusatzaufgabeFueNick",
+            "request": "launch",
+            "mainClass": "ZusatzaufgabeFueNick",
+            "projectName": "PROG2_WS21_22_HA_d8561602"
+        },
+        {
+            "type": "java",
+            "name": "Launch aufgabe2",
+            "request": "launch",
+            "mainClass": "aufgabe2",
+            "projectName": "PROG2_WS21_22_HA_d8561602"
+        },
+        {
+            "type": "java",
             "name": "Launch VoynichDateiausgabe2",
             "request": "launch",
             "mainClass": "VoynichDateiausgabe2",

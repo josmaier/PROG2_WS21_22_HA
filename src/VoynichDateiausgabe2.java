@@ -13,8 +13,7 @@ public class VoynichDateiausgabe2 {
     /**
      * Function to output the text to the console.
      * It also saves the text in a string which is then converted into a char array
-     * for
-     * further processing
+     * for further processing
      * 
      * @return char[]
      */

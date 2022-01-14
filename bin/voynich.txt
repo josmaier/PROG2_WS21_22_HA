@@ -25,3 +25,31 @@ choo kaiin Shoaiin okol daiin far cThol daiin cTholdar
 ycheey okay oky daiin okchey kokaiin chol kchy dal
 d*eeo Shody koShey cThy okchey keey keey dal chtor
 *eo chol chok choty chotey    dchaiin
+
+>event batch
+add notify PEC 02/05 15:00 PEC 6H of Spa
+add notify PEC 03/05 15:00 PEC 4H of Interlagos
+add notify PEC 04/02 15:00 PEC 8H of Sebring
+add notify PEC 05/07 15:00 PEC 10H of LeMans
+add notify PEC 05/28 15:00 PEC 6H of Silverstone
+add notify PEC 06/25 15:00 PEC 12H of Daytona
+add 01/15 12:00 iRacing Roar
+add 01/22 12:00 iRacing Daytona24
+add 02/12 12:00 iRacing 12H of Bathurst
+add 02/16 12:00 iRacing Daytona 500
+add 03/26 12:00 iRacing 12H of Sebring
+add 04/09 12:00 iRacing N24H
+add 05/14 12:00 iRacing Fixed Indy 500
+add 05/21 12:00 iRacing Open Indy 500
+add 05/29 12:00 iRacing Coke 600
+add 06/18 12:00 iRacing 6H of Watkins Glen
+add 07/23 12:00 iRacing 24H of Spa
+add 08/20 12:00 iRacing Knoxville Nationals
+add 09/19 12:00 iRacing NextGen Bristol
+add 09/17 12:00 iRacing Bathurst 1000
+add 10/08 12:00 iRacing Petit Le LeMans
+add 10/23 12:00 iRacing Crandon Championship
+add 11/06 12:00 iRacing NASCAR Finale PHX
+add 11/12 12:00 iRacing 10H of Suzuka
+add 11/26 12:00 iRacing Winter Derby
+add 12/18 12:00 iRacing Chili Bowl
